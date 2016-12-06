@@ -1,0 +1,4 @@
+# please also check http://pypi.debian.net/dhcpcanon/watch
+version=3
+opts=uversionmangle=s/(rc|a|b|c)/~$1/ \
+https://pypi.debian.net/dhcpcanon/dhcpcanon-(.+)\.(?:zip|tgz|tbz|txz|(?:tar\.(?:gz|bz2|xz)))
