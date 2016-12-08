@@ -1,5 +1,5 @@
 Source: dhcpcanon
-Maintainer: ju <ju@riseup.net>
+Maintainer: ju xor <ju@riseup.net>
 Section: net
 Priority: optional
 Build-Depends: debhelper,
