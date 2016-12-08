@@ -15,7 +15,12 @@ Vcs-Git: https://anonscm.debian.org/git/collab-maint/dhcpcanon.git
 
 Package: dhcpcanon
 Architecture: all
-Depends: ${sphinxdoc:Depends}, ${misc:Depends}, ${python:Depends}, python-pyroute2, python-ipaddr, python-netaddr, python-scapy, python-tz
-Description: DCHP IPv4 anonymity profile implementation (RFC7844).
+Depends: ${sphinxdoc:Depends}, ${misc:Depends}, ${python:Depends},
+         python-ipaddr,
+         python-netaddr,
+         python-pyroute2,
+         python-scapy,
+         python-tz
+Description: DCHP IPv4 client anonymity profile implementation
  DCHP client implementation of the anonymity profile (RFC7844)
  using Scapy Automaton.
