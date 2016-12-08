@@ -2,7 +2,7 @@ Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: dhcpcanon
 Upstream-Contact: juga <juga@riseup.net>
 Source: https://github.com/juga0/dhcpcanon/
-Files-Excluded: *.egg-info/
+Files-Excluded: *.egg-info
 
 Files: *
 Copyright: 2016 juga <juga@riseup.net>
