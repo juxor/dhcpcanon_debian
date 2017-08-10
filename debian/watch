@@ -1,4 +1,4 @@
 # please also check http://pypi.debian.net/dhcpcanon/watch
 version=3
-opts=uversionmangle=s/(rc|a|b|c)/~$1/ \
-https://pypi.debian.net/dhcpcanon/dhcpcanon-(.+)\.(?:zip|tgz|tbz|txz|(?:tar\.(?:gz|bz2|xz)))
+opts=filenamemangle=s/.+\/v?(\d\S+)\.tar\.gz/dhcpcanon-$1\.tar\.gz/ \
+  https://github.com/juga0/dhcpcanon/tags .*/v?(\d\S+)\.tar\.gz
