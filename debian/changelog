@@ -1,3 +1,13 @@
+dhcpcanon (0.5.0-1) UNRELEASED; urgency=medium
+
+  * New upstream release.
+  * Update control version.
+  * Add systemd service
+  * Package only for python3
+  * Change upstream source in watch
+
+ -- ju xor <ju@riseup.net>  Thu, 10 Aug 2017 13:34:02 +0000
+
 dhcpcanon (0.1.8.2-1) unstable; urgency=low
 
   * Initial upload. Closes: #846281
