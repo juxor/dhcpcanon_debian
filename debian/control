@@ -2,25 +2,27 @@ Source: dhcpcanon
 Maintainer: ju xor <ju@riseup.net>
 Section: net
 Priority: optional
-Build-Depends: debhelper,
+Build-Depends: adduser,
+               debhelper,
                dh-python,
-               python-all,
-               python-docutils,
-               python-setuptools,
-               python-sphinx,
-Standards-Version: 3.9.8
+               dh-systemd,
+               python3-sphinx,
+               python3,
+               python3-all,
+               python3-docutils,
+               python3-setuptools,
+Standards-Version: 4.0.0
 Homepage: https://github.com/juga0/dhcpcanon
 Vcs-Browser: https://anonscm.debian.org/cgit/collab-maint/dhcpcanon.git
 Vcs-Git: https://anonscm.debian.org/git/collab-maint/dhcpcanon.git
 
 Package: dhcpcanon
 Architecture: all
-Depends: ${sphinxdoc:Depends}, ${misc:Depends}, ${python:Depends},
-         python-ipaddr,
-         python-netaddr,
-         python-pyroute2,
-         python-scapy,
-         python-tz
+Depends: ${sphinxdoc:Depends}, ${misc:Depends}, ${python3:Depends},
+         python3-pip,
+         python3-netaddr,
+         python3-attr,
+         python3-scapy,
 Description: DCHP IPv4 client anonymity profile implementation
  DCHP client implementation of the anonymity profile (RFC7844)
  using Scapy Automaton.
