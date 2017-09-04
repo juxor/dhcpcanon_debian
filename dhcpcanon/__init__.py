@@ -1,37 +1,25 @@
 # -*- coding: utf-8 -*-
-# vim:ts=4:sw=4:expandtab
-
-# Copyright 2016 juga <juga@riseup.net>
-
-# This file is part of dhcpcanon.
-#
-# dhcpcanon is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# dhcpcanon is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with dhcpcanon.  If not, see <http://www.gnu.org/licenses/>.
-
+# vim:ts=4:sw=4:expandtab 2
+# Copyright 2016, 2017 juga (juga at riseup dot net), MIT license.
+"""__init__ for the DHCP client implementation of the Anonymity Profile
+([:rfc:`7844`])."""
+from __future__ import absolute_import
+# from . import (clientscript, conflog, constants, dhcpcap, dhcpcapfsm,
+#                dhcpcaplease, dhcpcaputils, timers)
 try:
-    from _version import version
+    from ._version import version
 except ImportError:
     try:
         from setuptools_scm import get_version
         version = get_version()
     except (ImportError, LookupError):
-        version = '0.1.8.2'
+        version = '0.5'
 
 __version__ = version
 __author__ = "juga"
 __author_mail__ = "juga@riseup.net"
 __description__ = "DHCP client disclosing less identifying information"
-__long_description__ = "Python implmentation of the DHCP Anonymity Profile \
+__long_description__ = "Python implmentation of the DHCP Anonymity Profiles \
                         (RFC7844) designed for users that \
                         wish to remain anonymous to the visited network \
                         minimizing disclosure of identifying information."
@@ -58,3 +46,5 @@ __license__ = """
     You should have received a copy of the GNU General Public License
     along with this package. If not, see <http://www.gnu.org/licenses/>.
 """
+__all__ = ('clientscript', 'conflog', 'dhcpcapfsm', 'dhcpcaplease',
+           'dhcpcaputils', 'timers', 'constants', 'dhcpcap')
