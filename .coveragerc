@@ -1,0 +1,17 @@
+[run]
+branch = True
+source = dhcpcanon
+parallel = True
+
+[paths]
+source =
+    dhcpcanon
+   .tox/*/lib/python*/site-packages/dhcpcanon
+   .tox/*/lib/site-packages/dhcpcanon
+   .tox/pypy*/site-packages/dhcpcanon
+
+[report]
+omit =
+    */tests/*
+    */python?.?/*
+    *__init__*

@@ -1,6 +1,12 @@
 dhcpcanon - DHCP anonymity profile
 ==================================
 
+[![PyPI](https://img.shields.io/pypi/v/dhcpcanon.svg)](https://pypi.python.org/pypi/dhcpcanon)
+[![Build Status](https://www.travis-ci.org/juga0/dhcpcanon.svg?branch=master)](https://www.travis-ci.org/juga0/dhcpcanon)
+[![Coverage Status](https://coveralls.io/repos/github/juga0/dhcpcanon/badge.svg?branch=master)](https://coveralls.io/github/juga0/dhcpcanon?branch=master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/76064be9036443479e4f65bc902c1fc5)](https://www.codacy.com/app/juga0/dhcpcanon?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=juga0/dhcpcanon&amp;utm_campaign=Badge_Grade)
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/1020/badge)](https://bestpractices.coreinfrastructure.org/projects/1020)
+
 DHCP client disclosing less identifying information.
 
 Python implmentation of the DHCP Anonymity Profile
@@ -50,23 +56,20 @@ From [Wikipedia](https://en.wikipedia.org/wiki/DHCP):
 > network needs to be statically (ie., manually) assigned to an
 > IP address.
 
-#### DHCP Finite State Machine
-
-State-transition diagram for DHCP clients:
-
-![image](./doc/source/images/dhcpc_fsm.svg)
-
-Current status
+Documentation
 --------------
 
-WIP, still not recommended for end users.
+A more extensive online documentation is available in [Read the docs](https://dhcpcanon.readthedocs.io/).
+The documentation source is in [this repository](docs/source/).
 
-See [TODO](./TODO.md)
+Visit [DHCPAP](https://github.com/dhcpap) for an overview of all the repositories
+related to the RFC7844 implementation work.
 
 Installation
 ------------
 
-See [Installation](INSTALL.md)
+See [Installation](docs/source/install.rst)
+and [Running](docs/source/running.rst)
 
 Download
 --------
@@ -77,7 +80,7 @@ You can download this project in either
 
 You can also clone the project with Git by running:
 
-   git clone https://github.com/juga0/dhcpcanon
+    git clone https://github.com/juga0/dhcpcanon
 
 Bugs and features
 -----------------
@@ -86,14 +89,26 @@ If you wish to signal a bug or report a feature request, please fill-in
 an issue on the [dhcpcanon issue
 tracker](https://github.com/juga0/dhcpcanon/issues).
 
+Current status
+--------------
+
+WIP, still not recommended for end users. Testers welcomed.
+
+See [TODO](./docs/source/todo.rst)
+
 License
 -------
 
-dhcpcanon is Copyright 2016 by juga ( juga at riseup dot net), and is
-covered by the [GPLv3](http://www.gnu.org/licenses/) license.
+``dhcpcanon`` is copyright 2016, 2017 by juga ( juga at riseup dot net) and is
+licensed by the terms of the MIT license.
 
 Acknowledgments
 ---------------
 
-To the persons that push me to implement yet another DHCP client and to
-the person that told me about the anonymity profile.
+To all the persons that have given suggestions and comments about this
+implementation, the authors of the
+[RFC 7844](https://tools.ietf.org/html/rfc7844),
+the [Prototype Fund Project](https://prototypefund.de) of the
+the [Open Knowledge Foundation Germany](https://okfn.de/) and the
+[Federal Ministry of Education and Research](https://www.bmbf.de/)
+who partially funds this work.

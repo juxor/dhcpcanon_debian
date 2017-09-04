@@ -13,8 +13,18 @@ Contents:
 
    about
    install
+   download
    running
    todo
+   contributing
+   soa
+   specification
+   questions
+   implementation
+   privileges
+   integration
+   api
+   diagrams
 
 Indices and tables
 ==================

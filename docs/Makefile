@@ -13,6 +13,16 @@ PAPEROPT_letter = -D latex_paper_size=letter
 ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
 # the i18n builder cannot share the environment and doctrees with the others
 I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
+# not in auto-generated conf
+SOURCEDIR       = source
+IMAGEDIRS       = source/images
+BUILDDIRIMAGES  = $(BUILDDIR)/html/_images
+# generate SVG
+PYREVERSE     = pyreverse
+PYREVERSE_FLAGS = -o svg -p dhcpcanon ../dhcpcanon
+# SVG to PDF conversion
+SVG2PDF       = inkscape
+SVG2PDF_FLAGS =
 
 .PHONY: help
 help:
@@ -44,12 +54,36 @@ help:
 	@echo "  coverage   to run coverage check of the documentation (if enabled)"
 	@echo "  dummy      to check syntax errors of document sources"
 
+# Not in auto-generated conf
+FSMSVG := python -c "from dhcpcanon.dhcpcapfsm import DHCPCAPFSM; DHCPCAPFSM.graph(target='>$(IMAGEDIRS)/dhcpcapfsm.svg')";mkdir -p $(BUILDDIRIMAGES);cp $(IMAGEDIRS)/*.svg $(BUILDDIRIMAGES)
+fsmsvg:
+	@echo "Generating FSM SVG"
+	$(FSMSVG)
+
+UMLSVG := $(PYREVERSE) $(PYREVERSE_FLAGS);mv *.svg $(IMAGEDIRS);mkdir -p $(BUILDDIRIMAGES);cp $(IMAGEDIRS)/*.svg $(BUILDDIRIMAGES)
+umlsvg:
+	@echo "Generating UML SVG"
+	$($UMLSVG)
+
+# Pattern rule for converting SVG to PDF
+%.pdf : %.svg
+	$(SVG2PDF) -f $< -A $@
+# Build a list of SVG files to convert to PDFs
+PDFs := $(foreach dir, $(IMAGEDIRS), $(patsubst %.svg,%.pdf,$(wildcard $(SOURCEDIR)/$(dir)/*.svg)))
+# Make a rule to build the PDFs
+images:
+	@echo "Generating PDFs"
+	$(PDFs)
+
 .PHONY: clean
 clean:
 	rm -rf $(BUILDDIR)/*
+	rm -f $(PDFs)
 
 .PHONY: html
 html:
+	$(FSMSVG)
+	$(UMLSVG)
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
@@ -128,6 +162,9 @@ epub3:
 
 .PHONY: latex
 latex:
+	$(FSMSVG)
+	$(UMLSVG)
+	$(PDFs)
 	$(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) $(BUILDDIR)/latex
 	@echo
 	@echo "Build finished; the LaTeX files are in $(BUILDDIR)/latex."
@@ -136,6 +173,9 @@ latex:
 
 .PHONY: latexpdf
 latexpdf:
+	$(FSMSVG)
+	$(UMLSVG)
+	$(PDFs)
 	$(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) $(BUILDDIR)/latex
 	@echo "Running LaTeX files through pdflatex..."
 	$(MAKE) -C $(BUILDDIR)/latex all-pdf
