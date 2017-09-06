@@ -5,6 +5,10 @@ dhcpcanon (0.5.0-1) UNRELEASED; urgency=medium
   * Add systemd service
   * Package only for python3
   * Change upstream source in watch
+  * Add dependency adduser
+  * Add systemd to dh
+  * Remove add user parameter not needed in postinst
+  * Add versions to dependencies
 
  -- ju xor <ju@riseup.net>  Thu, 10 Aug 2017 13:34:02 +0000
 
