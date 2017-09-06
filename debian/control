@@ -19,6 +19,7 @@ Vcs-Git: https://anonscm.debian.org/git/collab-maint/dhcpcanon.git
 Package: dhcpcanon
 Architecture: all
 Depends: ${sphinxdoc:Depends}, ${misc:Depends}, ${python3:Depends},
+         adduser,
          python3-pip,
          python3-netaddr,
          python3-attr,

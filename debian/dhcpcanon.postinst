@@ -6,7 +6,6 @@ case $1 in
         echo "adding dhcpcanon user..."
         adduser --quiet --system --no-create-home --group \
         --home "/run/dhcpcanon" \
-        --shell '/bin/false' \
         --gecos 'dhcpcanon system user,,,' \
         dhcpcanon
     fi
