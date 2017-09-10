@@ -1,9 +1,9 @@
 #!/usr/bin/make -f
 export PYBUILD_NAME=dhcpcanon
+export PYBUILD_INSTALL_ARGS_python=--install-scripts=/sbin
 %:
-	dh $@ --with python3,sphinxdoc,systemd --buildsystem=pybuild --with=systemd
+	dh $@ --with python3,sphinxdoc,systemd --buildsystem=pybuild
 
 override_dh_auto_build:
 	dh_auto_build
 	PYTHONPATH=. http_proxy='127.0.0.1:9' sphinx-build -N -bhtml docs/source/ build/html # HTML generator
-
