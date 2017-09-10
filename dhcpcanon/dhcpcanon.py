@@ -10,14 +10,18 @@ import logging.config
 
 from scapy.config import conf
 
+# in python3 this seems to be the only way to to disable:
+# WARNING: Failed to execute tcpdump.
+conf.logLevel = logging.ERROR
+
 from . import __version__
 from .conflog import LOGGING
-from .constants import CLIENT_PORT, SERVER_PORT
+from .constants import (CLIENT_PORT, SERVER_PORT, SCRIPT_PATH, LEASE_PATH,
+                        CONF_PATH, PID_PATH)
 from .dhcpcapfsm import DHCPCAPFSM
 
 logging.config.dictConfig(LOGGING)
 logger = logging.getLogger('dhcpcanon')
-logger_scapy_interactive = logging.getLogger('scapy.interactive')
 
 
 def main():
@@ -32,32 +36,36 @@ def main():
     parser.add_argument('--version', action='version',
                         help='version',
                         version='%(prog)s ' + __version__)
+    parser.add_argument('-s', '--delay_selecting',
+                        help='Selecting starts after a ramdon delay.',
+                        action='store_true')
     # options to looks like dhclient
     parser.add_argument(
         '-sf', metavar='script-file', nargs='?',
-        default='/sbin/dhclient-script',
+        const=SCRIPT_PATH,
         help='Path to the network configuration script invoked by '
              'dhclient when it gets a lease. If unspecified, the '
-             'default /sbin/dhclient-script is used. See '
+             'default /sbin/dhcpcanon-script is used. See '
              'dhclient-script(8) for a description of this file.')
     parser.add_argument(
         '-pf', metavar='pid-file', nargs='?',
-        default='/var/run/dhclient.pid',
+        const=PID_PATH,
         help='Path to the process ID file. If unspecified, the'
              'default /var/run/dhclient.pid is used')
     parser.add_argument(
         '-lf', metavar='lease-file', nargs='?',
-        default='/var/lib/dhcp/dhclient.leases',
+        const=LEASE_PATH,
         help='Path to the lease database file. If unspecified, the'
              'default /var/lib/dhcp/dhclient.leases is used. See '
              'dhclient.leases(5) for a description of this file.')
     parser.add_argument(
         '-cf', metavar='config-file', nargs='?',
-        default='/etc/dhcp/dhclient.conf',
+        const=CONF_PATH,
         help='Path to the client configuration file. If unspecified,'
              'the default /etc/dhcp/dhclient.conf is used. See '
              'dhclient.conf(5) for a description of this file.')
-    parser.add_argument('-d',
+    parser.add_argument(
+        '-d',
         action='store_true',
         help='Force dhclient to run as a foreground  process. '
              'Normally the DHCP  client will run in the foreground '
@@ -81,8 +89,7 @@ def main():
 
     if args.verbose:
         logger.setLevel(logging.DEBUG)
-        logger_scapy_interactive.setLevel(logging.DEBUG)
-        # DEBUG = True
+    logger.debug('args %s', args)
     if args.lease is not None:
         # TODO
         pass
@@ -100,7 +107,8 @@ def main():
     dhcpcap = DHCPCAPFSM(iface=conf.iface,
                          server_port=SERVER_PORT,
                          client_port=CLIENT_PORT,
-                         scriptfile=args.sf)
+                         scriptfile=args.sf,
+                         delay_selecting=args.delay_selecting)
     dhcpcap.run()
 
 
