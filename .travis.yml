@@ -2,16 +2,13 @@ language: python
 sudo: required
 dist: trusty
 python:
-    - '2.7'
-    # - '3.5'
+    - '3.5'
 
 before_install:
-    - sudo apt update && sudo apt install -y python-dev inkscape pylint
+    - sudo apt update && sudo apt install -y inkscape
 
 install:
     - pip install -r requirements_dev.txt
-    - pip install -U tox coveralls codecov
-# && pip install -r dev-requirements.txt"
 env:
     - TOX_ENV=lint
     - TOX_ENV=py27,stats
@@ -20,7 +17,8 @@ env:
 
 script:
   - tox -c tox.ini -e $TOX_ENV
-  - coverage run --source=dhcpcanon setup.py test
+  # this is already in tox
+  # - coverage run --source=dhcpcanon setup.py test
 
 after_success:
   - coveralls

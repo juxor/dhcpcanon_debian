@@ -27,6 +27,7 @@ from .dhcpcap import DHCPCAP
 from .dhcpcaputils import isack, isnak, isoffer
 from .timers import (gen_delay_selecting, gen_timeout_request_rebind,
                      gen_timeout_request_renew, gen_timeout_resend, nowutc)
+from .setnet import set_net
 
 logger = logging.getLogger(__name__)
 
@@ -44,7 +45,7 @@ class DHCPCAPFSM(Automaton):
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
 
-    def reset(self, iface=None, client_mac=None, xid=None):
+    def reset(self, iface=None, client_mac=None, xid=None, scriptfile=None):
         """Reset object attributes when state is INIT."""
         logger.debug('Reseting attributes.')
         if iface is None:
@@ -58,7 +59,10 @@ class DHCPCAPFSM(Automaton):
                 mac = tempmac
             client_mac = str2mac(mac)
         self.client = DHCPCAP(iface=iface, client_mac=client_mac, xid=xid)
-        self.script = ClientScript()
+        if scriptfile is not None:
+            self.script = ClientScript(scriptfile)
+        else:
+            self.script = None
         self.time_sent_request = None
         self.discover_attempts = 0
         self.request_attempts = 0
@@ -67,7 +71,8 @@ class DHCPCAPFSM(Automaton):
 
     def __init__(self, iface=None, server_port=None,
                  client_port=None, client_mac=None, xid=None,
-                 scriptfile=None, delay_before_selecting=None,
+                 scriptfile=None, delay_selecting=False,
+                 delay_before_selecting=None,
                  timeout_select=None, debug_level=5, *args, **kargs):
         """Overwrites Automaton __init__ method.
 
@@ -80,9 +85,10 @@ class DHCPCAPFSM(Automaton):
         logger.debug('Inizializating FSM.')
         super(DHCPCAPFSM, self).__init__(*args, **kargs)
         self.debug_level = debug_level
+        self.delay_selecting = delay_selecting
         self.delay_before_selecting = delay_before_selecting
         self.timeout_select = timeout_select
-        self.reset(iface, client_mac, xid)
+        self.reset(iface, client_mac, xid, scriptfile)
         self.client.server_port = server_port or SERVER_PORT
         self.client.client_port = client_port or CLIENT_PORT
         self.socket_kargs = {
@@ -92,9 +98,9 @@ class DHCPCAPFSM(Automaton):
                              self.client.client_port,
                              self.client.client_mac)
         }
-        self.script.scriptname = scriptfile
-        self.script.script_init(self.client.lease, self.current_state)
-        self.script.script_go()
+        if self.script is not None:
+            self.script.script_init(self.client.lease, self.current_state)
+            self.script.script_go()
         logger.debug('FSM thread id: %s.', self.threadid)
 
     def get_timeout(self, state, function):
@@ -319,10 +325,13 @@ class DHCPCAPFSM(Automaton):
             self.reset()
         self.current_state = STATE_INIT
         # NOTE: see previous TODO, maybe this is not needed.
-        if self.delay_before_selecting is None:
-            delay_before_selecting = gen_delay_selecting()
+        if self.delay_selecting:
+            if self.delay_before_selecting is None:
+                delay_before_selecting = gen_delay_selecting()
+            else:
+                delay_before_selecting = self.delay_before_selecting
         else:
-            delay_before_selecting = self.delay_before_selecting
+            delay_before_selecting = 0
         self.set_timeout(self.current_state,
                          self.timeout_delay_before_selecting,
                          delay_before_selecting)
@@ -350,8 +359,15 @@ class DHCPCAPFSM(Automaton):
         logger.info('(%s) state changed %s -> bound', self.client.iface,
                     STATES2NAMES[self.current_state])
         self.current_state = STATE_BOUND
-        self.script.script_init(self.client.lease, self.current_state)
-        self.script.script_go()
+        if self.script is not None:
+            self.script.script_init(self.client.lease, self.current_state)
+            self.script.script_go()
+        else:
+            try:
+                set_net(self.client.lease)
+            except:
+                logger.error('Can not set IP')
+                raise self.END()
         # TODO: go daemon?
 
     @ATMT.state()
@@ -359,34 +375,45 @@ class DHCPCAPFSM(Automaton):
         """RENEWING state."""
         logger.debug('In state: RENEWING')
         self.current_state = STATE_RENEWING
-        self.script.script_init(self.client.lease, self.current_state)
-        self.script.script_go()
+        if self.script is not None:
+            self.script.script_init(self.client.lease, self.current_state)
+            self.script.script_go()
+        else:
+            set_net(self.client.lease)
 
     @ATMT.state()
     def REBINDING(self):
         """REBINDING state."""
         logger.debug('In state: REBINDING')
         self.current_state = STATE_REBINDING
-        self.script.script_init(self.client.lease, self.current_state)
-        self.script.script_go()
+        if self.script is not None:
+            self.script.script_init(self.client.lease, self.current_state)
+            self.script.script_go()
+        else:
+            set_net(self.client.lease)
 
     @ATMT.state(final=1)
     def END(self):
         """END state."""
         logger.debug('In state: END')
         self.current_state = STATE_END
-        self.script.script_init(self.client.lease, self.current_state)
-        self.script.script_go()
-        self.reset()
+        if self.script is not None:
+            self.script.script_init(self.client.lease, self.current_state)
+            self.script.script_go()
+        else:
+            set_net(self.client.lease)
+        return
 
     @ATMT.state(error=1)
     def ERROR(self):
         """ERROR state."""
         logger.debug('In state: ERROR')
         self.current_state = STATE_ERROR
-        self.script.script_init(self.client.lease, self.current_state)
-        self.script.script_go()
-        raise self.END()
+        if self.script is not None:
+            self.script.script_init(self.client.lease, self.current_state)
+            self.script.script_go()
+        set_net(self.client.lease)
+        raise self.INIT()
 
     # TIMEOUTS
     ###########
