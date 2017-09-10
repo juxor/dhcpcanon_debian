@@ -1,12 +1,25 @@
+language: python
 sudo: required
-language: generic
+dist: trusty
+python:
+    - '3.5'
 
-services:
-  - docker
+before_install:
+    - sudo apt update && sudo apt install -y inkscape
+
+install:
+    - pip install -r requirements_dev.txt
+env:
+    - TOX_ENV=lint
+    - TOX_ENV=py27,stats
+    - TOX_ENV=py35,stats
+    - TOX_ENV=doc
 
 script:
-  - wget -O- http://travis.debian.net/script.sh | sh -
+  - tox -c tox.ini -e $TOX_ENV
+  # this is already in tox
+  # - coverage run --source=dhcpcanon setup.py test
 
-branches:
-  except:
-    - /^debian\/\d/
+after_success:
+  - coveralls
+  - codecov
