@@ -9,6 +9,10 @@ dhcpcanon (0.7.1-1) UNRELEASED; urgency=medium
   * Add systemd to dh
   * Remove add user parameter not needed in postinst
   * Add versions to dependencies
+  * Add dependencies for pytest
+  * Install apparmor
+  * Add apparmor to dh
+  * Add pybuild arguments to set main script in /sbin
 
  -- ju xor <ju@riseup.net>  Sun, 10 Sep 2017 20:26:25 +0000
 
