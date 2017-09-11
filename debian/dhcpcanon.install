@@ -1,3 +1,4 @@
 tmpfiles.d/dhcpcanon.conf usr/lib/tmpfiles.d
 systemd/dhcpcanon.service lib/systemd/system
 sbin/dhcpcanon-script sbin/
+apparmor.d/sbin.dhcpcanon etc/apparmor.d

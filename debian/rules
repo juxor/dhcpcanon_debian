@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 export PYBUILD_NAME=dhcpcanon
-export PYBUILD_INSTALL_ARGS_python=--install-scripts=/sbin
+export PYBUILD_INSTALL_ARGS ?= --install-scripts=/sbin
 %:
 	dh $@ --with python3,sphinxdoc,systemd --buildsystem=pybuild
 
