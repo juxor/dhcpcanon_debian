@@ -1,4 +1,4 @@
-dhcpcanon (0.7.3-1) UNRELEASED; urgency=medium
+dhcpcanon (0.7.3-1) unstable; urgency=medium
 
   * New upstream release.
   * Update control version.
@@ -13,9 +13,9 @@ dhcpcanon (0.7.3-1) UNRELEASED; urgency=medium
   * Install apparmor
   * Add apparmor to dh
   * Add pybuild arguments to set main script in /sbin
-  * Add dpendency resolvconf.
+  * Add dependency resolvconf.
 
- -- ju xor <ju@riseup.net>  Wed, 13 Sep 2017 23:12:30 +0200
+ -- ju xor <ju@riseup.net>  Thu, 14 Sep 2017 00:19:26 +0200
 
 dhcpcanon (0.1.8.2-1) unstable; urgency=low
 
