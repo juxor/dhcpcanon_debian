@@ -9,6 +9,10 @@ case $1 in
         --gecos 'dhcpcanon system user,,,' \
         dhcpcanon
     fi
+    if getent group resolvconf-admins >/dev/null; then
+        echo "adding dhcpcanon user to resolvconf-admins group...."
+        adduser dhcpcanon resolvconf-admins
+    fi
     ;;
 esac
 

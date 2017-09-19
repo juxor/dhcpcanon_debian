@@ -27,17 +27,15 @@ Homepage: https://github.com/juga0/dhcpcanon
 Package: dhcpcanon
 Architecture: all
 Depends: adduser,
-         macchanger,
          python3-attr,
          python3-netaddr,
          python3-pip,
          python3-pyroute2,
          python3-scapy,
-         resolvconf,
          ${misc:Depends},
          ${python3:Depends},
          ${sphinxdoc:Depends},
-Suggests: apparmor,
+Suggests: apparmor, macchanger, resolvconf-admin|resolvconf, systemd
 Provides: dhcp-client,
 Description: DCHP IPv4 client anonymity profile implementation
  DCHP client implementation of the anonymity profile (RFC7844)
