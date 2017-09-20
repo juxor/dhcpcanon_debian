@@ -2,6 +2,9 @@ dhcpcanon (0.7.5-1) UNRELEASED; urgency=medium
 
   * New upstream release.
   * Suggest macchanger (not depends), resolvoconf-admin and systemd
+  * Change package description
+  * remove unneded echo on adduser.
+  * Install .link and move suggests to recommends
 
  -- ju xor <ju@riseup.net>  Tue, 19 Sep 2017 09:10:01 +0000
 
