@@ -10,8 +10,7 @@ case $1 in
         dhcpcanon
     fi
     if getent group resolvconf-admins >/dev/null; then
-        echo "adding dhcpcanon user to resolvconf-admins group...."
-        adduser dhcpcanon resolvconf-admins
+        adduser --quiet dhcpcanon resolvconf-admins
     fi
     ;;
 esac
