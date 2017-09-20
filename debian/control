@@ -35,7 +35,7 @@ Depends: adduser,
          ${misc:Depends},
          ${python3:Depends},
          ${sphinxdoc:Depends},
-Suggests: apparmor, macchanger, resolvconf-admin|resolvconf, systemd
+Recommends: apparmor, udev|macchanger, systemd|resolvconf-admin
 Provides: dhcp-client,
 Description: DCHP IPv4 client anonymity profile implementation
  DCHP client implementation of the anonymity profile (RFC7844)
