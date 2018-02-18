@@ -3,7 +3,7 @@ Maintainer: ju xor <ju@riseup.net>
 Section: net
 Priority: optional
 Build-Depends: adduser,
-               debhelper (>= 9),
+               debhelper (>= 11),
                dh-apparmor,
                dh-python,
                dh-systemd,
@@ -11,6 +11,7 @@ Build-Depends: adduser,
                python3,
                python3-all,
                python3-attr,
+               python3-dbus,
                python3-docutils,
                python3-netaddr,
                python3-pip,
