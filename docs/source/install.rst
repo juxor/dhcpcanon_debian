@@ -19,21 +19,31 @@ will be enabled and run by default, so there is no need to run anything manually
 You can use `macchanger <https://github.com/alobbs/macchanger>`__,
 `macouflage <https://github.com/subgraph/macouflage>`__ or other.
 
-Installation from source code
-==============================
+Installation from source code in Debian/Ubuntu
+===============================================
 
 In case you would like to have a newer version or it is not packaged for your
 distribution, you can install it from the source code.
 
 Install system dependencies, in Debian/Ubuntu::
 
-    sudo apt install python-dev
+    sudo apt install python3-dev
 
 Obtain the source code::
 
     git clone https://github.com/juga0/dhcpcanon/
 
 Install ``dhcpcanon`` and system files::
+
+    sudo ./install.sh
+
+
+for advanced users
+--------------------
+
+Follow the two first steps in the previous paragraph.
+
+To install ``dhcpcanon`` and the ``systemd`` service::
 
     sudo make install WITH_SYSTEMD=true
 
@@ -42,8 +52,15 @@ In Debian this will install all the required files under ``/usr/local``.
 
     systemctl start dhcpcanon
 
-for advanced users
---------------------
+It's possible to also install support for udev::
+
+    sudo apt install sudo make install WITH_SYSTEMD=true
+    sudo make install WITH_SYSTEMD=true WITH_SYSTEMD_UDEV=true
+
+And apparmor profile::
+
+    sudo apt install apparmor
+    sudo make install WITH_APPARMOR=true
 
 In the case that you would like to install without root privileges,
 you can install it without the systemd service and you can specify
@@ -61,7 +78,7 @@ to be able to run it as non root user and set up DNS servers provided by the DHC
 It will be possible to set up DNS servers with ``systemd`` too soon.
 
 An alternative to do not run ``dhcpcanon`` with root privileges nor systemd,
-is to use `ambient-rs wrapper <https://github.com/infinity0/ambient-rs>`
+is to use `ambient-rs wrapper <https://github.com/infinity0/ambient-rs>`_
 and run::
 
     RUST_BACKTRACE=1 ./target/debug/ambient \
@@ -75,7 +92,7 @@ The pip package does not install either system files and it can be installed
 without root, but it still needs to be run as root, as commented in the last
 section.::
 
-    pip install dhcpcanon
+    pip3 install dhcpcanon
 
 In Debian this will install the files in ``/home/youruser/.local``
 Note also that if you install it in a virtualenv, when executing ``dhcpcanon``
@@ -90,12 +107,12 @@ It is recommended to install ``dhcpcanon`` in a python virtual environment.
 
 Check https://virtualenv.pypa.io/en/latest/installation.html. In Debian::
 
-    sudo apt install python-virtualenv
+    sudo apt install python3-virtualenv
 
 Create a virtual environment::
 
     mkdir ~/.virtualenvs
-    virtualenv ~/.virtualenvs/dhcpcanonenv
+    virtualenv ~/.virtualenvs/dhcpcanonenv -p /usr/bin/python3
     source ~/.virtualenvs/dhcpcanonenv/bin/activate
 
 Get the sources::
@@ -103,4 +120,4 @@ Get the sources::
 
 Install it::
 
-    pip install -e .
+    pip3 install -e .
