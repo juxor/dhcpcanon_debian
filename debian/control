@@ -19,6 +19,7 @@ Build-Depends: adduser,
                python3-scapy,
                python3-setuptools,
                python3-sphinx,
+Build-Conflicts: python-sphinx,
 Standards-Version: 4.1.3
 Vcs-Browser: https://salsa.debian.org/debian/dhcpcanon
 Vcs-Git: https://salsa.debian.org/debian/dhcpcanon.git
