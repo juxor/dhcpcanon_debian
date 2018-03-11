@@ -5,8 +5,15 @@ dhcpcanon (0.8.2-1) UNRELEASED; urgency=medium
   * Change package description
   * remove unneded echo on adduser.
   * Install .link and move suggests to recommends
+  * d/compat, d/control: update to dh 11
+  * Remove obsolote dh-systemd
+  * Fix dh_python3 dbus warning dependency.
+  * Rename docs with the name of the binary package to follow dh_installdocs(1)
+  * Add fix sphinxdoc warning to todo
+  * Update Debian policy
+  * Update Debian repositories to salsa as alioth is moving away
 
- -- ju xor <ju@riseup.net>  Sun, 18 Feb 2018 13:15:16 +0000
+ -- ju xor <ju@riseup.net>  Sun, 11 Mar 2018 18:43:32 +0000
 
 dhcpcanon (0.7.3-1) unstable; urgency=medium
 
