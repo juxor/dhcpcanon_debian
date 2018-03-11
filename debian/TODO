@@ -1,0 +1,3 @@
+- Fix warning [0]. Find out what dh_sphinxdoc is expecting here.
+
+[0] dpkg-gencontrol: warning: package dhcpcanon: unused substitution variable ${sphinxdoc:Built-Using}
