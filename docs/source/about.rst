@@ -3,9 +3,12 @@
 dhcpcanon - DHCP anonymity profile
 ==================================
 
+|PyPI| |Build Status| |Coverage Status| |Documentation status| |CII Best
+Practices|
+
 DHCP client disclosing less identifying information.
 
-Python implmentation of the DHCP Anonymity Profiles :rfc:`7844`
+Python implementation of the DHCP Anonymity Profiles :rfc:`7844`
 designed for users that wish to remain anonymous to the visited network
 minimizing disclosure of identifying information.
 
@@ -121,3 +124,14 @@ the `Prototype Fund Project <https://prototypefund.de>`_ of the
 `Open Knowledge Foundation Germany <https://okfn.de/>`_ and the
 `Federal Ministry of Education and Research <https://www.bmbf.de/>`_
 for funding partially this project.
+
+.. |PyPI| image:: https://img.shields.io/pypi/v/dhcpcanon.svg
+   :target: https://pypi.python.org/pypi/dhcpcanon
+.. |Build Status| image:: https://www.travis-ci.org/juga0/dhcpcanon.svg?branch=master
+   :target: https://www.travis-ci.org/juga0/dhcpcanon
+.. |Coverage Status| image:: https://coveralls.io/repos/github/juga0/dhcpcanon/badge.svg?branch=master
+   :target: https://coveralls.io/github/juga0/dhcpcanon?branch=master
+.. |Documentation Status| image:: https://readthedocs.org/projects/dhcpcanon/badge/?version=latest
+   :target: http://dhcpcanon.readthedocs.io/en/latest/?badge=latest
+.. |CII Best Practices| image:: https://bestpractices.coreinfrastructure.org/projects/1020/badge
+   :target: https://bestpractices.coreinfrastructure.org/projects/1020
