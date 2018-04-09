@@ -1,0 +1,37 @@
+From: juxor <ju@riseup.net>
+Date: Mon, 9 Apr 2018 09:56:09 +0000
+Subject: Remove external links to avoid privacy breach
+
+---
+ README.rst | 14 --------------
+ 1 file changed, 14 deletions(-)
+
+diff --git a/README.rst b/README.rst
+index b5ea7ee..047529c 100644
+--- a/README.rst
++++ b/README.rst
+@@ -1,9 +1,6 @@
+ dhcpcanon - DHCP anonymity profile
+ ==================================
+ 
+-|PyPI| |Build Status| |Coverage Status| |Documentation status| |CII Best
+-Practices|
+-
+ DHCP client disclosing less identifying information.
+ 
+ Python implementation of the DHCP Anonymity Profile
+@@ -115,14 +112,3 @@ implementation, the authors of the `RFC
+ Project <https://prototypefund.de>`__ of the `Open Knowledge Foundation
+ Germany <https://okfn.de/>`__ and the `Federal Ministry of Education and
+ Research <https://www.bmbf.de/>`__ who partially funds this work.
+-
+-.. |PyPI| image:: https://img.shields.io/pypi/v/dhcpcanon.svg
+-   :target: https://pypi.python.org/pypi/dhcpcanon
+-.. |Build Status| image:: https://www.travis-ci.org/juga0/dhcpcanon.svg?branch=master
+-   :target: https://www.travis-ci.org/juga0/dhcpcanon
+-.. |Coverage Status| image:: https://coveralls.io/repos/github/juga0/dhcpcanon/badge.svg?branch=master
+-   :target: https://coveralls.io/github/juga0/dhcpcanon?branch=master
+-.. |Documentation Status| image:: https://readthedocs.org/projects/dhcpcanon/badge/?version=latest
+-  :target: http://dhcpcanon.readthedocs.io/en/latest/?badge=latest
+-.. |CII Best Practices| image:: https://bestpractices.coreinfrastructure.org/projects/1020/badge
+-   :target: https://bestpractices.coreinfrastructure.org/projects/1020
