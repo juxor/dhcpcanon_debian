@@ -1,4 +1,4 @@
-dhcpcanon (0.8.2-1) UNRELEASED; urgency=medium
+dhcpcanon (0.8.3-1) UNRELEASED; urgency=medium
 
   * New upstream release.
   * Suggest macchanger (not depends), resolvoconf-admin and systemd
@@ -12,6 +12,8 @@ dhcpcanon (0.8.2-1) UNRELEASED; urgency=medium
   * Add fix sphinxdoc warning to todo
   * Update Debian policy
   * Update Debian repositories to salsa as alioth is moving away
+  * Include binaries for the documentation logo and favicon
+  * d/control: add sphinx theme build dependency
 
  -- ju xor <ju@riseup.net>  Sun, 11 Mar 2018 18:43:32 +0000
 
