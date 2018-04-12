@@ -6,6 +6,7 @@ Build-Depends: adduser,
                debhelper (>= 11),
                dh-apparmor,
                dh-python,
+               libjs-jquery,
                libjs-twitter-bootstrap,
                pkg-config,
                python3,
@@ -30,6 +31,7 @@ Homepage: https://github.com/juga0/dhcpcanon
 Package: dhcpcanon
 Architecture: all
 Depends: adduser,
+         libjs-jquery,
          libjs-twitter-bootstrap,
          python3-attr,
          python3-netaddr,
