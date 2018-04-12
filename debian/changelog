@@ -1,4 +1,4 @@
-dhcpcanon (0.8.5-1) UNRELEASED; urgency=medium
+dhcpcanon (0.8.5-1) sid; urgency=medium
 
   * New upstream release.
   * Suggest macchanger (not depends), resolvoconf-admin and systemd
@@ -16,10 +16,9 @@ dhcpcanon (0.8.5-1) UNRELEASED; urgency=medium
   * d/control: add sphinx theme build dependency
   * d/gbp.conf: use DEP-14 for git-buildpackage
   * Add d/links to solve embedded-javascript-library lintian W
-  * d/control, d/install, d/links: format using wrap-and-sort 
--ast 
+  * d/control, d/install, d/links: format using wrap-and-sort -ast
 
- -- ju xor <ju@riseup.net>  Sun, 11 Mar 2018 18:43:32 +0000
+ -- ju xor <ju@riseup.net>  Thu, 12 Apr 2018 20:21:03 +0000
 
 dhcpcanon (0.7.3-1) unstable; urgency=medium
 
