@@ -1,3 +1,10 @@
+dhcpcanon (0.8.4-1~bpo9+1) stretch-backports; urgency=medium
+
+  * Rebuild for stretch-backports.
+  * Update branch in gbp.conf & Vcs-Git URL.
+
+ -- ju xor <ju@riseup.net>  Thu, 12 Apr 2018 16:30:40 +0000
+
 dhcpcanon (0.8.4-1) UNRELEASED; urgency=medium
 
   * New upstream release.
