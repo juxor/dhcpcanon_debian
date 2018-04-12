@@ -14,6 +14,10 @@ dhcpcanon (0.8.5-1) UNRELEASED; urgency=medium
   * Update Debian repositories to salsa as alioth is moving away
   * Include binaries for the documentation logo and favicon
   * d/control: add sphinx theme build dependency
+  * d/gbp.conf: use DEP-14 for git-buildpackage
+  * Add d/links to solve embedded-javascript-library lintian W
+  * d/control, d/install, d/links: format using wrap-and-sort 
+-ast 
 
  -- ju xor <ju@riseup.net>  Sun, 11 Mar 2018 18:43:32 +0000
 
