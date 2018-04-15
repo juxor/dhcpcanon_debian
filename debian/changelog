@@ -1,3 +1,13 @@
+dhcpcanon (0.8.5-2) UNRELEASED; urgency=medium
+
+  * Add patch to do not use bootstrap sphinx theme while it has lintian warnings
+  * d/control, d/links: revert using bootstrap dependencies
+  * d/rules: remove proxy as is not needed anymore to build sphinx docs without using the Internet
+  * d/control: update Standards-Version. No other changes required
+  * d/control, py3dist-overrides: solve dbus dependency
+
+ -- ju xor <ju@riseup.net>  Sun, 15 Apr 2018 16:10:15 +0000
+
 dhcpcanon (0.8.5-1) sid; urgency=medium
 
   * New upstream release.
