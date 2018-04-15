@@ -1,0 +1,125 @@
+From: juxor <ju@riseup.net>
+Date: Sun, 15 Apr 2018 16:06:56 +0000
+Subject: Do not use bootstrap sphinx theme
+
+while the Debian package does not solve lintian warnings
+---
+ docs/source/conf.py | 72 ++++++-----------------------------------------------
+ setup.py            |  2 +-
+ 2 files changed, 8 insertions(+), 66 deletions(-)
+
+diff --git a/docs/source/conf.py b/docs/source/conf.py
+index ae36ea7..0a95472 100644
+--- a/docs/source/conf.py
++++ b/docs/source/conf.py
+@@ -22,7 +22,6 @@ import sys
+ sys.path.insert(0, os.path.dirname(os.path.dirname(
+     os.path.abspath('.'))))
+ from dhcpcanon import __version__
+-import sphinx_bootstrap_theme
+ 
+ # -- General configuration ------------------------------------------------
+ 
+@@ -44,8 +43,6 @@ extensions = [
+     'sphinx.ext.githubpages',
+     'sphinx.ext.autosummary',
+ ]
+-html_theme = 'bootstrap'
+-html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
+ 
+ # Add any paths that contain templates here, relative to this directory.
+ templates_path = ['_templates']
+@@ -137,73 +134,18 @@ todo_include_todos = True
+ # The theme to use for HTML and HTML Help pages.  See the documentation for
+ # a list of builtin themes.
+ #
+-html_theme = 'bootstrap'
++html_theme = 'alabaster'
+ 
+ # Theme options are theme-specific and customize the look and feel of a theme
+ # further.  For a list of options available for each theme, see the
+ # documentation.
+ html_theme_options = {
+-    # Navigation bar title. (Default: ``project`` value)
+-    'navbar_title': project,
+-
+-    # Tab name for entire site. (Default: "Site")
+-    'navbar_site_name': "Site",
+-
+-    # Tab name for the current pages TOC. (Default: "Page")
+-    'navbar_pagenav_name': "Page",
+-
+-    # A list of tuples containing pages or urls to link to.
+-    # Valid tuples should be in the following forms:
+-    #    (name, page)                 # a link to a page
+-    #    (name, "/aa/bb", 1)          # a link to an arbitrary relative url
+-    #    (name, "http://example.com", True) # arbitrary absolute url
+-    # Note the "1" or "True" value above as the third argument to indicate
+-    # an arbitrary url.
+-    # 'navbar_links': [
+-    #     ("Examples", "examples"),
+-    #     ("Link", "http://example.com", True),
+-    # ],
+-
+-    # Global TOC depth for "site" navbar tab. (Default: 1)
+-    # Switching to -1 shows all levels.
+-    'globaltoc_depth': 2,
+-
+-    # Include hidden TOCs in Site navbar?
+-    #
+-    # Note: If this is "false", you cannot have mixed ``:hidden:`` and
+-    # non-hidden ``toctree`` directives in the same page, or else the build
+-    # will break.
+-    #
+-    # Values: "true" (default) or "false"
+-    'globaltoc_includehidden': "true",
+-
+-    # HTML navbar class (Default: "navbar") to attach to <div> element.
+-    # For black navbar, do "navbar navbar-inverse"
+-    'navbar_class': "navbar",
+-
+-    # Fix navigation bar to top of page?
+-    # Values: "true" (default) or "false"
+-    'navbar_fixed_top': "true",
+-
+-    # Location of link to source.
+-    # Options are "nav" (default), "footer" or anything else to exclude.
+-    'source_link_position': "nav",
+-
+-    # Bootswatch (http://bootswatch.com/) theme.
+-    #
+-    # Options are nothing (default) or the name of a valid theme such
+-    # such as "cosmo" or "sandstone".
+-    #
+-    # Example themes:
+-    # * flatly
+-    # * sandstone (v3 only)
+-    # * united
+-    # * yeti (v3 only)
+-    'bootswatch_theme': "sandstone",
+-
+-    # Choose Bootstrap version.
+-    # Values: "3" (default) or "2" (in quotes)
+-    'bootstrap_version': "3",
++    'logo': 'images/dhcpcanon_logo.png',
++    'logo_name': 'dhcpcanon',
++    'github_user': 'juga0',
++    'github_repo': 'https://github.com/juga0/dhcpcanon',
++    'travis_button': True,
++    'codecov_button': True,
+ }
+ 
+ # Add any paths that contain custom themes here, relative to this directory.
+diff --git a/setup.py b/setup.py
+index beeb19d..5b72f16 100644
+--- a/setup.py
++++ b/setup.py
+@@ -71,7 +71,7 @@ setup(
+     extras_require={
+         'dev': ['flake8'],
+         'test': test_requirements,
+-        'doc': ['sphinx', 'sphinx-bootstrap-theme', 'pylint']
++        'doc': ['sphinx', 'pylint']
+     },
+     tests_require=test_requirements,
+     entry_points={
